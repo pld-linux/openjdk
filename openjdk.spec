@@ -1,5 +1,8 @@
 # TODO
 # - all
+
+# class data version seen with file(1) that this jvm is able to load
+%define		_classdataversion 50.0
 Summary:	Open-source JDK, an implementation of the Java Platform
 Name:		openjdk
 Version:	1.7.0
@@ -12,9 +15,11 @@ Source1:	http://www.java.net/download/openjdk/jdk7/promoted/b10/hotspot-7-ea-src
 # Source1-md5:	df51d7e061c3e97adf7a61a406c42d74
 Source2:	http://www.java.net/download/openjdk/jdk7/promoted/b10/jtreg_bin-3_2_2_01-fcs-bin-b03-21_Mar_2007.zip
 # Source2-md5:	1b501642684b7cfe8aff3fa60c5a2083
+Source3:	Test.java
 URL:		https://openjdk.dev.java.net/
 BuildRequires:	jpackage-utils
 BuildRequires:	rpmbuild(macros) >= 1.357
+Provides:	java(ClassDataVersion) = %{_classdataversion}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -30,9 +35,19 @@ cat <<'EOF' > javac
 exec java -jar %{_javadir}/javac-%{version}.jar ${1:+"$@"}
 EOF
 
+cp %{SOURCE3} Test.java
+
 %build
 cd compiler
 %ant
+cd -
+
+./compiler/dist/bin/javac Test.java
+classver=$(file Test.class | grep -o 'compiled Java class data, version [0-9.]*' | awk '{print $NF}')
+if [ "$classver" != %{_classdataversion} ]; then
+	echo "Set %%define _classdataversion to $classver and rerun."
+	exit 1
+fi
 
 %install
 rm -rf $RPM_BUILD_ROOT
