@@ -17,6 +17,7 @@ Source2:	http://www.java.net/download/openjdk/jdk7/promoted/b10/jtreg_bin-3_2_2_
 # Source2-md5:	1b501642684b7cfe8aff3fa60c5a2083
 Source3:	Test.java
 URL:		https://openjdk.dev.java.net/
+BuildRequires:	file
 BuildRequires:	jpackage-utils
 BuildRequires:	rpmbuild(macros) >= 1.357
 Provides:	java(ClassDataVersion) = %{_classdataversion}
