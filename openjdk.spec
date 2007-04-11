@@ -20,6 +20,7 @@ URL:		https://openjdk.dev.java.net/
 BuildRequires:	file
 BuildRequires:	jpackage-utils
 BuildRequires:	rpmbuild(macros) >= 1.357
+BuildRequires:	jdk
 Provides:	java(ClassDataVersion) = %{_classdataversion}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
