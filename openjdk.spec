@@ -17,11 +17,14 @@ Source2:	http://www.java.net/download/openjdk/jdk7/promoted/b10/jtreg_bin-3_2_2_
 # Source2-md5:	1b501642684b7cfe8aff3fa60c5a2083
 Source3:	Test.java
 URL:		https://openjdk.dev.java.net/
+BuildRequires:	ant
 BuildRequires:	file
-BuildRequires:	jpackage-utils
-BuildRequires:	rpmbuild(macros) >= 1.357
 BuildRequires:	jdk
+BuildRequires:	jpackage-utils
+BuildRequires:	libstdc++-devel
+BuildRequires:	rpmbuild(macros) >= 1.357
 Provides:	java(ClassDataVersion) = %{_classdataversion}
+ExclusiveArch:	%{ix86} %{x8664}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -40,10 +43,20 @@ EOF
 cp %{SOURCE3} Test.java
 
 %build
+# HotSpot
+%{__make} \
+	-C hotspot/make \
+	ALT_BOOTDIR=%{java_home} \
+%ifarch %{x8664}
+	ARCH_DATA_MODEL=64
+%endif
+
+# Compiler
 cd compiler
 %ant
 cd -
 
+# Test Class Data Version
 ./compiler/dist/bin/javac Test.java
 classver=$(file Test.class | grep -o 'compiled Java class data, version [0-9.]*' | awk '{print $NF}')
 if [ "$classver" != %{_classdataversion} ]; then
