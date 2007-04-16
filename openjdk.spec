@@ -4,6 +4,7 @@
 # class data version seen with file(1) that this jvm is able to load
 %define		_classdataversion 50.0
 Summary:	Open-source JDK, an implementation of the Java Platform
+Summary(pl.UTF-8):	JDK o otwartych źrodłach - implementacja platformy Java
 Name:		openjdk
 Version:	1.7.0
 Release:	0.1
@@ -32,6 +33,11 @@ Today this project contains two significant components of the JDK:
 - The HotSpot Virtual Machine
 - The Java programming-language compiler (javac), with complete
   NetBeans project metadata
+
+%description -l pl.UTF-8:
+Aktualnie ten projekt zawiera dwa znaczące składniki JDK:
+- maszynę wirtualną HotSpot
+- kompilator Javy (javac) z pełnymi metadanymi projektu NetBeans
 
 %prep
 %setup -qc -a1 -a2
