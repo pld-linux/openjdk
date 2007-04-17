@@ -1,6 +1,8 @@
 # TODO
-# - force our optflags for hotspot? (currently: -fno-rtti -fno-exceptions -fcheck-new -m32 -march=i586 -pipe -O3 -fno-strict-aliasing)
 # - all
+
+# broken
+%define	_enable_debug_packages 0
 
 # class data version seen with file(1) that this jvm is able to load
 %define		_classdataversion 50.0
@@ -57,6 +59,10 @@ HOTSPOT_BUILD_JOBS=$(echo $HOTSPOT_BUILD_JOBS)
 
 %{__make} \
 	-j1 HOTSPOT_BUILD_JOBS=$HOTSPOT_BUILD_JOBS \
+	CC="%{__cc}" \
+	CXX="%{__cxx}" \
+	OPT_CFLAGS="%{rpmcflags}" \
+	WARNINGS_ARE_ERRORS='' \
 	-C hotspot/make \
 	ALT_BOOTDIR=%{java_home} \
 %ifarch %{x8664}
@@ -78,6 +84,20 @@ fi
 
 %install
 rm -rf $RPM_BUILD_ROOT
+%{__make} export_product \
+	-C hotspot/make \
+	ALT_BOOTDIR=%{java_home} \
+	EXPORT_PATH=$RPM_BUILD_ROOT%{_prefix} \
+	EXPORT_LIB_DIR=$RPM_BUILD_ROOT%{_libdir} \
+	EXPORT_JRE_LIB_ARCH_DIR=$RPM_BUILD_ROOT%{_libdir}/jre \
+	EXPORT_DOCS_DIR=$RPM_BUILD_ROOT%{_docdir} \
+%ifarch %{x8664}
+	ARCH_DATA_MODEL=64
+%endif
+
+rm -rf jvmti
+mv $RPM_BUILD_ROOT%{_docdir}/platform/jvmti .
+
 install -d $RPM_BUILD_ROOT{%{_javadir},%{_bindir}}
 cp -a compiler/dist/lib/javac.jar $RPM_BUILD_ROOT%{_javadir}/javac-%{version}.jar
 ln -s javac-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/javac.jar
@@ -88,7 +108,22 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc compiler/doc/*
+%doc compiler/doc/* jvmti
+
+# hotspot
+%dir %{_libdir}/jre
+%attr(755,root,root) %{_libdir}/jre/libsaproc.so
+%dir %{_libdir}/jre/server
+%{_libdir}/jre/server/Xusage.txt
+%attr(755,root,root) %{_libdir}/jre/server/libjsig.so
+%attr(755,root,root) %{_libdir}/jre/server/libjvm.so
+%{_libdir}/sa-jdi.jar
+%{_includedir}/jmm.h
+%{_includedir}/jni.h
+%{_includedir}/jvmti.h
+%{_includedir}/linux/jni_md.h
+
+# compiler
 %attr(755,root,root) %{_bindir}/javac
 %{_javadir}/javac-%{version}.jar
 %{_javadir}/javac.jar
