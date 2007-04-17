@@ -1,4 +1,5 @@
 # TODO
+# - force our optflags for hotspot? (currently: -fno-rtti -fno-exceptions -fcheck-new -m32 -march=i586 -pipe -O3 -fno-strict-aliasing)
 # - all
 
 # class data version seen with file(1) that this jvm is able to load
@@ -10,12 +11,12 @@ Version:	1.7.0
 Release:	0.1
 License:	GPL v2
 Group:		Development/Languages/Java
-Source0:	http://www.java.net/download/openjdk/jdk7/promoted/b10/compiler-7-ea-src-b10-21_mar_2007.zip
-# Source0-md5:	a7be9da818adff098c00b00a983b0e40
-Source1:	http://www.java.net/download/openjdk/jdk7/promoted/b10/hotspot-7-ea-src-b10-21_mar_2007.zip
-# Source1-md5:	df51d7e061c3e97adf7a61a406c42d74
-Source2:	http://www.java.net/download/openjdk/jdk7/promoted/b10/jtreg_bin-3_2_2_01-fcs-bin-b03-21_Mar_2007.zip
-# Source2-md5:	1b501642684b7cfe8aff3fa60c5a2083
+Source0:	http://www.java.net/download/openjdk/jdk7/promoted/b11/compiler-7-ea-src-b11-10_apr_2007.zip
+# Source0-md5:	07d66408d68b41a7884cd2f176c41ce2
+Source1:	http://www.java.net/download/openjdk/jdk7/promoted/b11/hotspot-7-ea-src-b11-10_apr_2007.zip
+# Source1-md5:	55c9920bc0ce1b6459f09eb030b4d9d3
+Source2:	http://www.java.net/download/openjdk/jdk7/promoted/b11/jtreg_bin-3_2_2_01-fcs-bin-b03-10_Apr_2007.zip
+# Source2-md5:	185807a77cd29792f58291f42f6b25ac
 Source3:	Test.java
 URL:		https://openjdk.dev.java.net/
 BuildRequires:	ant
@@ -50,7 +51,12 @@ cp %{SOURCE3} Test.java
 
 %build
 # HotSpot
+HOTSPOT_BUILD_JOBS="%(echo "%{__make}" | sed -e 's#.*-j\([[:space:]]*[0-9]\+\)#\1#g')"
+[ "$HOTSPOT_BUILD_JOBS" = "%{__make}" ] && HOTSPOT_BUILD_JOBS=1
+HOTSPOT_BUILD_JOBS=$(echo $HOTSPOT_BUILD_JOBS)
+
 %{__make} \
+	-j1 HOTSPOT_BUILD_JOBS=$HOTSPOT_BUILD_JOBS \
 	-C hotspot/make \
 	ALT_BOOTDIR=%{java_home} \
 %ifarch %{x8664}
