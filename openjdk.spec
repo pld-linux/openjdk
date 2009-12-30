@@ -14,14 +14,21 @@ Source0:	http://download.java.net/openjdk/jdk6/promoted/%{buildnum}/%{name}-6-sr
 # Source0-md5:	078fe0ab744c98694decc77f2456c560
 Patch0:		%{name}-build.patch
 URL:		http://openjdk.dev.java.net/
+BuildRequires:	alsa-lib-devel
 BuildRequires:	ant
 BuildRequires:	cups-devel
 BuildRequires:	file
+BuildRequires:	gawk
+BuildRequires:	java-xerces
 BuildRequires:	jdk
 BuildRequires:	jpackage-utils
 BuildRequires:	libstdc++-devel
 BuildRequires:	libstdc++-static
+BuildRequires:	openmotif-devel
+BuildRequires:	procps
 BuildRequires:	rpmbuild(macros) >= 1.357
+BuildRequires:	unzip
+BuildRequires:	zip
 Provides:	java(ClassDataVersion) = %{_classdataversion}
 ExclusiveArch:	%{ix86} %{x8664}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
