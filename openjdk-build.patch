@@ -1,0 +1,11 @@
+--- ./jdk/src/solaris/native/sun/awt/awt_GraphicsEnv.c~	2009-12-30 12:15:22.000000000 +0100
++++ ./jdk/src/solaris/native/sun/awt/awt_GraphicsEnv.c	2009-12-30 12:22:51.000000000 +0100
+@@ -959,7 +958,7 @@
+ 
+ int J2DXErrHandler(Display *display, XErrorEvent *xerr) {
+     int ret = 0;
+-    if (xerr->minor_code == X_ShmAttach) {
++    if (xerr->minor_code == 1) {
+         xshmAttachFailed = JNI_TRUE;
+     } else {
+         ret = (*xerror_saved_handler)(display, xerr);
