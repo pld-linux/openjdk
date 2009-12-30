@@ -3,6 +3,9 @@
 %define		_classdataversion	50.0
 %define		buildnum		b17
 
+# It does not work with openjdk Makefile. Use HOTSPOT_BUILD_JOBS instead.
+%undefine	_smp_mflags
+
 Summary:	Open-source JDK, an implementation of the Java Platform
 Summary(pl.UTF-8):	JDK o otwartych źrodłach - implementacja platformy Java
 Name:		openjdk
@@ -42,11 +45,12 @@ unset JAVA_HOME
 unset CLASSPATH
 LC_ALL=C
 LANG=C
-export JAVA_HOME CLASSPATH LC_ALL LANG
+HOTSPOT_BUILD_JOBS=%(_NCPUS=$(/usr/bin/getconf _NPROCESSORS_ONLN); [ "$_NCPUS" -gt 1 ] && echo "$(($_NCPUS * 2))")
+export JAVA_HOME CLASSPATH LC_ALL LANG HOTSPOT_BUILD_JOBS
 
-%{__make} sanity
-%{__make} \
-	UTILS_USR_BIN_PATH=""
+/usr/bin/make sanity
+/usr/bin/make \
+	UTILS_USR_BIN_PATH="" \
 	CC="%{__cc}" \
 	CXX="%{__cxx}" \
 	OPT_CFLAGS="%{rpmcflags}" \
@@ -59,7 +63,7 @@ export JAVA_HOME CLASSPATH LC_ALL LANG
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} export_product \
+/usr/bin/make export_product \
 	ALT_BOOTDIR=%{java_home} \
 	EXPORT_PATH=$RPM_BUILD_ROOT%{_prefix} \
 	EXPORT_LIB_DIR=$RPM_BUILD_ROOT%{_libdir} \
