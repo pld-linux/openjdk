@@ -42,7 +42,7 @@ JDK o otwartych źrodłach - implementacja platformy Java.
 
 %build
 smp_mflags=%{?_smp_mflags}
-HOTSPOT_BUILD_JOBS=${smp_mflags:-1}${smp_mflags#-j}
+HOTSPOT_BUILD_JOBS=${smp_mflags#-j}
 unset JAVA_HOME
 unset CLASSPATH
 LC_ALL=C
