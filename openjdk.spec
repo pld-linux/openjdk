@@ -11,7 +11,7 @@ Release:	0.1
 License:	GPL v2
 Group:		Applications
 Source0:	http://download.java.net/openjdk/jdk6/promoted/%{buildnum}/%{name}-6-src-%{buildnum}-14_oct_2009.tar.gz
-# Source0-md5:	-
+# Source0-md5:	078fe0ab744c98694decc77f2456c560
 Patch0:		%{name}-build.patch
 URL:		http://openjdk.dev.java.net/
 BuildRequires:	ant
