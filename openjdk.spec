@@ -36,8 +36,7 @@ Open-source JDK, an implementation of the Java Platform.
 JDK o otwartych źrodłach - implementacja platformy Java.
 
 %prep
-%setup -q -c
-
+%setup -qc
 %patch0 -p0
 
 %build
@@ -45,11 +44,15 @@ unset JAVA_HOME
 unset CLASSPATH
 LC_ALL=C
 LANG=C
-HOTSPOT_BUILD_JOBS=%(_NCPUS=$(/usr/bin/getconf _NPROCESSORS_ONLN); [ "$_NCPUS" -gt 1 ] && echo "$(($_NCPUS * 2))")
+
+HOTSPOT_BUILD_JOBS=%(echo "%{__make}" | sed -e 's#.*-j\([[:space:]]*[0-9]\+\)#\1#g')
+[ "$HOTSPOT_BUILD_JOBS" = "%{__make}" ] && HOTSPOT_BUILD_JOBS=1
+HOTSPOT_BUILD_JOBS=$(echo $HOTSPOT_BUILD_JOBS)
+
 export JAVA_HOME CLASSPATH LC_ALL LANG HOTSPOT_BUILD_JOBS
 
-/usr/bin/make sanity
-/usr/bin/make \
+%{__make} -j1 sanity
+%{__make} -j1 \
 	UTILS_USR_BIN_PATH="" \
 	CC="%{__cc}" \
 	CXX="%{__cxx}" \
@@ -63,7 +66,7 @@ export JAVA_HOME CLASSPATH LC_ALL LANG HOTSPOT_BUILD_JOBS
 %install
 rm -rf $RPM_BUILD_ROOT
 
-/usr/bin/make export_product \
+%{__make} export_product \
 	ALT_BOOTDIR=%{java_home} \
 	EXPORT_PATH=$RPM_BUILD_ROOT%{_prefix} \
 	EXPORT_LIB_DIR=$RPM_BUILD_ROOT%{_libdir} \
@@ -79,7 +82,7 @@ mv $RPM_BUILD_ROOT%{_docdir}/platform/jvmti .
 install -d $RPM_BUILD_ROOT{%{_javadir},%{_bindir}}
 cp -a compiler/dist/lib/javac.jar $RPM_BUILD_ROOT%{_javadir}/javac-%{version}.jar
 ln -s javac-%{version}.jar $RPM_BUILD_ROOT%{_javadir}/javac.jar
-install javac $RPM_BUILD_ROOT%{_bindir}
+install -p javac $RPM_BUILD_ROOT%{_bindir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
