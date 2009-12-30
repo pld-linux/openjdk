@@ -3,9 +3,6 @@
 %define		_classdataversion	50.0
 %define		buildnum		b17
 
-# It does not work with openjdk Makefile. Use HOTSPOT_BUILD_JOBS instead.
-%undefine	_smp_mflags
-
 Summary:	Open-source JDK, an implementation of the Java Platform
 Summary(pl.UTF-8):	JDK o otwartych źrodłach - implementacja platformy Java
 Name:		openjdk
@@ -29,6 +26,10 @@ Provides:	java(ClassDataVersion) = %{_classdataversion}
 ExclusiveArch:	%{ix86} %{x8664}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+# make -j1 does not work because there is some stupid magick which takes MFLAGS
+# and says -jN is not allowed. remove %{_smp_mflags} from %__make.
+%{expand:%%global	__make		%(echo %{__make} | sed -e 's/\b%{?_smp_mflags}//')}
+
 %description
 Open-source JDK, an implementation of the Java Platform.
 
@@ -40,19 +41,20 @@ JDK o otwartych źrodłach - implementacja platformy Java.
 %patch0 -p0
 
 %build
+smp_mflags=%{?_smp_mflags}
+HOTSPOT_BUILD_JOBS=${smp_mflags:-1}${smp_mflags#-j}
 unset JAVA_HOME
 unset CLASSPATH
 LC_ALL=C
 LANG=C
 
-HOTSPOT_BUILD_JOBS=%(echo "%{__make}" | sed -e 's#.*-j\([[:space:]]*[0-9]\+\)#\1#g')
-[ "$HOTSPOT_BUILD_JOBS" = "%{__make}" ] && HOTSPOT_BUILD_JOBS=1
-HOTSPOT_BUILD_JOBS=$(echo $HOTSPOT_BUILD_JOBS)
-
 export JAVA_HOME CLASSPATH LC_ALL LANG HOTSPOT_BUILD_JOBS
 
-%{__make} -j1 sanity
-%{__make} -j1 \
+echo "Make: %{__make}"
+echo "Build Jobs: $HOTSPOT_BUILD_JOBS"
+
+%{__make} sanity
+%{__make} \
 	UTILS_USR_BIN_PATH="" \
 	CC="%{__cc}" \
 	CXX="%{__cxx}" \
