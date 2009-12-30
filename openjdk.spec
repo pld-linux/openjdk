@@ -28,7 +28,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # make -j1 does not work because there is some stupid magick which takes MFLAGS
 # and says -jN is not allowed. remove %{_smp_mflags} from %__make.
-%{expand:%%global	__make		%(echo %{__make} | sed -e 's/\b%{?_smp_mflags}//')}
+%{expand:%%global	__make		%(echo %{__make} | sed -e 's/%{?_smp_mflags}\b//')}
 
 %description
 Open-source JDK, an implementation of the Java Platform.
