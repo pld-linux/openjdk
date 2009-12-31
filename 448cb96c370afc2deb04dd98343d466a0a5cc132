@@ -1,0 +1,5 @@
+- unified with java-sun (Version format, some macros)
+- some work on %install section
+- don't set ARCH_DATA_MODEL= (not required on linux)
+- dropped EA (it works on many non-intel archs)
+- NFY
