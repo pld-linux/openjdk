@@ -279,10 +279,8 @@ smp_mflags=%{?_smp_mflags}
 HOTSPOT_BUILD_JOBS=${smp_mflags#-j}
 unset JAVA_HOME
 unset CLASSPATH
-LC_ALL=C
-LANG=C
 
-export JAVA_HOME CLASSPATH LC_ALL LANG HOTSPOT_BUILD_JOBS
+export JAVA_HOME CLASSPATH HOTSPOT_BUILD_JOBS
 
 echo "Make: %{__make}"
 echo "Build Jobs: $HOTSPOT_BUILD_JOBS"
