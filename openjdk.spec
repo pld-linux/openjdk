@@ -222,18 +222,9 @@ Obsoletes:	blackdown-java-sdk-mozilla-plugin
 Obsoletes:	browser-plugin-openjdk-ng
 Obsoletes:	java-blackdown-mozilla-plugin
 Obsoletes:	jre-mozilla-plugin
-Obsoletes:	mozilla-firefox-plugin-gcc2-openjdk
-Obsoletes:	mozilla-firefox-plugin-gcc3-openjdk
 Obsoletes:	mozilla-firefox-plugin-java-blackdown
-Obsoletes:	mozilla-firefox-plugin-openjdk
 Obsoletes:	mozilla-plugin-blackdown-java-sdk
-Obsoletes:	mozilla-plugin-gcc2-openjdk
-Obsoletes:	mozilla-plugin-gcc3-openjdk
-Obsoletes:	mozilla-plugin-gcc32-openjdk
 Obsoletes:	mozilla-plugin-java-blackdown
-Obsoletes:	mozilla-plugin-openjdk
-Obsoletes:	openjdk-moz-plugin
-Obsoletes:	openjdk-mozilla-plugin
 
 %description -n browser-plugin-%{name}
 Java plugin for WWW browsers.
@@ -255,18 +246,9 @@ Obsoletes:	blackdown-java-sdk-mozilla-plugin
 Obsoletes:	browser-plugin-openjdk
 Obsoletes:	java-blackdown-mozilla-plugin
 Obsoletes:	jre-mozilla-plugin
-Obsoletes:	mozilla-firefox-plugin-gcc2-openjdk
-Obsoletes:	mozilla-firefox-plugin-gcc3-openjdk
 Obsoletes:	mozilla-firefox-plugin-java-blackdown
-Obsoletes:	mozilla-firefox-plugin-openjdk
 Obsoletes:	mozilla-plugin-blackdown-java-sdk
-Obsoletes:	mozilla-plugin-gcc2-openjdk
-Obsoletes:	mozilla-plugin-gcc3-openjdk
-Obsoletes:	mozilla-plugin-gcc32-openjdk
 Obsoletes:	mozilla-plugin-java-blackdown
-Obsoletes:	mozilla-plugin-openjdk
-Obsoletes:	openjdk-moz-plugin
-Obsoletes:	openjdk-mozilla-plugin
 
 %description -n browser-plugin-%{name}-ng
 Next-Generation Java plugin for WWW browsers. Works only with
