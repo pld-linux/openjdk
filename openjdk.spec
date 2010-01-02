@@ -62,10 +62,10 @@ Open-source JDK, an implementation of the Java Platform.
 JDK o otwartych źrodłach - implementacja platformy Java.
 
 %package appletviewer
-Summary:    Java applet viewer from openjdk
-Summary(pl.UTF-8):  Przeglądarka appletów openjdk
-Group:      Development/Languages/Java
-Requires:   %{name} = %{version}-%{release}
+Summary:	Java applet viewer from openjdk
+Summary(pl.UTF-8):	Przeglądarka appletów openjdk
+Group:		Development/Languages/Java
+Requires:	%{name} = %{version}-%{release}
 
 %description appletviewer
 This package applet viewer for openjdk.
@@ -74,19 +74,19 @@ This package applet viewer for openjdk.
 Ten pakiet zawiera przeglądarkę appletów dla openjdk.
 
 %package jre-jdbc
-Summary:    JDBC files for openjdk
-Summary(pl.UTF-8):  Pliki JDBC dla openjdk
-Group:      Development/Languages/Java
-Requires:   %{name}-jre = %{version}-%{release}
+Summary:	JDBC files for openjdk
+Summary(pl.UTF-8):	Pliki JDBC dla openjdk
+Group:		Development/Languages/Java
+Requires:	%{name}-jre = %{version}-%{release}
 %ifarch %{x8664}
-Requires:   libodbc.so.1()(64bit)
-Requires:   libodbcinst.so.1()(64bit)
+Requires:	libodbc.so.1()(64bit)
+Requires:	libodbcinst.so.1()(64bit)
 %else
-Requires:   libodbc.so.1
-Requires:   libodbcinst.so.1
+Requires:	libodbc.so.1
+Requires:	libodbcinst.so.1
 %endif
-Provides:   %{name}-jdbc
-Obsoletes:  java-sun-jdbc
+Provides:	%{name}-jdbc
+Obsoletes:	java-sun-jdbc
 
 %description jre-jdbc
 This package contains JDBC files for openjdk.
@@ -95,45 +95,45 @@ This package contains JDBC files for openjdk.
 Ten pakiet zawiera pliki JDBC dla openjdk.
 
 %package jre
-Summary:    Openjdk JRE (Java Runtime Environment) for Linux
-Summary(pl.UTF-8):  Openjdk JRE - środowisko uruchomieniowe Javy dla Linuksa
-Group:      Development/Languages/Java
-Requires:   %{name}-tools = %{version}-%{release}
-Requires:   jpackage-utils >= 0:1.6.6-14
-Requires:   rpm-whiteout >= 1.29
-Provides:   j2re = %{version}
-Provides:   jaas = %{version}
-Provides:   jaf = 1.1.1
-Provides:   java
-Provides:   java(ClassDataVersion) = %{_classdataversion}
-Provides:   java1.4
-Provides:   jaxp = 1.3
-Provides:   jaxp_parser_impl
-Provides:   jce = %{version}
-Provides:   jdbc-stdext = %{version}
-Provides:   jdbc-stdext = 3.0
-Provides:   jmx = 1.4
-Provides:   jndi = %{version}
-Provides:   jndi-cos = %{version}
-Provides:   jndi-dns = %{version}
-Provides:   jndi-ldap = %{version}
-Provides:   jndi-rmi = %{version}
-Provides:   jre = %{version}
-Provides:   jsse = %{version}
-Provides:   xml-commons-apis
-Obsoletes:  jaas
-Obsoletes:  java-blackdown-jre
-Obsoletes:  jaxp
-Obsoletes:  jce
-Obsoletes:  jdbc-stdext
-Obsoletes:  jmx
-Obsoletes:  jndi
-Obsoletes:  jndi-provider-cosnaming
-Obsoletes:  jndi-provider-dns
-Obsoletes:  jndi-provider-ldap
-Obsoletes:  jndi-provider-rmiregistry
-Obsoletes:  jre
-Obsoletes:  jsse
+Summary:	Openjdk JRE (Java Runtime Environment) for Linux
+Summary(pl.UTF-8):	Openjdk JRE - środowisko uruchomieniowe Javy dla Linuksa
+Group:		Development/Languages/Java
+Requires:	%{name}-tools = %{version}-%{release}
+Requires:	jpackage-utils >= 0:1.6.6-14
+Requires:	rpm-whiteout >= 1.29
+Provides:	j2re = %{version}
+Provides:	jaas = %{version}
+Provides:	jaf = 1.1.1
+Provides:	java
+Provides:	java(ClassDataVersion) = %{_classdataversion}
+Provides:	java1.4
+Provides:	jaxp = 1.3
+Provides:	jaxp_parser_impl
+Provides:	jce = %{version}
+Provides:	jdbc-stdext = %{version}
+Provides:	jdbc-stdext = 3.0
+Provides:	jmx = 1.4
+Provides:	jndi = %{version}
+Provides:	jndi-cos = %{version}
+Provides:	jndi-dns = %{version}
+Provides:	jndi-ldap = %{version}
+Provides:	jndi-rmi = %{version}
+Provides:	jre = %{version}
+Provides:	jsse = %{version}
+Provides:	xml-commons-apis
+Obsoletes:	jaas
+Obsoletes:	java-blackdown-jre
+Obsoletes:	jaxp
+Obsoletes:	jce
+Obsoletes:	jdbc-stdext
+Obsoletes:	jmx
+Obsoletes:	jndi
+Obsoletes:	jndi-provider-cosnaming
+Obsoletes:	jndi-provider-dns
+Obsoletes:	jndi-provider-ldap
+Obsoletes:	jndi-provider-rmiregistry
+Obsoletes:	jre
+Obsoletes:	jsse
 
 %description jre
 Java Runtime Environment for Linux. Does not contain any X11-related
@@ -144,12 +144,12 @@ compontents.
 elementów związanych ze środowiskiem X11.
 
 %package jre-X11
-Summary:    Openjdk JRE (Java Runtime Environment) for Linux, X11 related parts
-Summary(pl.UTF-8):  Openjdk JRE - środowisko uruchomieniowe Javy dla Linuksa, części korzystające z X11
-Group:      Development/Languages/Java
-Requires:   %{name}-jre = %{version}-%{release}
+Summary:	Openjdk JRE (Java Runtime Environment) for Linux, X11 related parts
+Summary(pl.UTF-8):	Openjdk JRE - środowisko uruchomieniowe Javy dla Linuksa, części korzystające z X11
+Group:		Development/Languages/Java
+Requires:	%{name}-jre = %{version}-%{release}
 # Provides:   javaws = %{version}
-Provides:   jre-X11 = %{version}
+Provides:	jre-X11 = %{version}
 
 %description jre-X11
 X11-related part of Java Runtime Environment for Linux.
@@ -159,12 +159,12 @@ X11-related part of Java Runtime Environment for Linux.
 środowiskiem graficznym X11.
 
 %package jre-alsa
-Summary:    JRE module for ALSA sound support
-Summary(pl.UTF-8):  Moduł JRE do obsługi dźwięku poprzez ALSA
-Group:      Development/Languages/Java
-Requires:   %{name}-jre = %{version}-%{release}
-Provides:   %{name}-alsa
-Obsoletes:  java-sun-alsa
+Summary:	JRE module for ALSA sound support
+Summary(pl.UTF-8):	Moduł JRE do obsługi dźwięku poprzez ALSA
+Group:		Development/Languages/Java
+Requires:	%{name}-jre = %{version}-%{release}
+Provides:	%{name}-alsa
+Obsoletes:	java-sun-alsa
 
 %description jre-alsa
 JRE module for ALSA sound support.
@@ -173,18 +173,18 @@ JRE module for ALSA sound support.
 Moduł JRE do obsługi dźwięku poprzez ALSA.
 
 %package tools
-Summary:    Shared Java tools
-Summary(pl.UTF-8):  Współdzielone narzędzia Javy
-Group:      Development/Languages/Java
-Requires:   %{name}-jre = %{version}-%{release}
-Requires:   rpm-whiteout >= 1.29
-Provides:   jar
-Provides:   java-jre-tools
-Provides:   java-shared
-Obsoletes:  fastjar
-Obsoletes:  jar
-Obsoletes:  java-jre-tools
-Obsoletes:  java-shared
+Summary:	Shared Java tools
+Summary(pl.UTF-8):	Współdzielone narzędzia Javy
+Group:		Development/Languages/Java
+Requires:	%{name}-jre = %{version}-%{release}
+Requires:	rpm-whiteout >= 1.29
+Provides:	jar
+Provides:	java-jre-tools
+Provides:	java-shared
+Obsoletes:	fastjar
+Obsoletes:	jar
+Obsoletes:	java-jre-tools
+Obsoletes:	java-shared
 
 %description tools
 This package contains tools that are common for every Java(TM)
@@ -195,12 +195,12 @@ Pakiet ten zawiera narzędzia wspólne dla każdej implementacji
 Javy(TM), takie jak rmic czy jar.
 
 %package demos
-Summary:    JDK demonstration programs
-Summary(pl.UTF-8):  Programy demonstracyjne do JDK
-Group:      Development/Languages/Java
-Requires:   %{name}-jre = %{version}-%{release}
-Obsoletes:  java-blackdown-demos
-Obsoletes:  jdk-demos
+Summary:	JDK demonstration programs
+Summary(pl.UTF-8):	Programy demonstracyjne do JDK
+Group:		Development/Languages/Java
+Requires:	%{name}-jre = %{version}-%{release}
+Obsoletes:	java-blackdown-demos
+Obsoletes:	jdk-demos
 
 %description demos
 JDK demonstration programs.
@@ -209,31 +209,31 @@ JDK demonstration programs.
 Programy demonstracyjne do JDK.
 
 %package -n browser-plugin-%{name}
-Summary:    Java plugin for WWW browsers
-Summary(pl.UTF-8):  Wtyczka Javy do przeglądarek WWW
-Group:      Development/Languages/Java
-Requires:   %{name}-jre-X11 = %{version}-%{release}
-Requires:   browser-plugins >= 2.0
-Requires:   browser-plugins(%{_target_base_arch})
-Provides:   %{name}-mozilla-plugin
-Provides:   mozilla-firefox-plugin-%{name}
-Provides:   mozilla-plugin-%{name}
-Obsoletes:  blackdown-java-sdk-mozilla-plugin
-Obsoletes:  browser-plugin-%{name}-ng
-Obsoletes:  java-blackdown-mozilla-plugin
-Obsoletes:  %{name}-moz-plugin
-Obsoletes:  %{name}-mozilla-plugin
-Obsoletes:  jre-mozilla-plugin
-Obsoletes:  mozilla-firefox-plugin-gcc2-%{name}
-Obsoletes:  mozilla-firefox-plugin-gcc3-%{name}
-Obsoletes:  mozilla-firefox-plugin-java-blackdown
-Obsoletes:  mozilla-firefox-plugin-%{name}
-Obsoletes:  mozilla-plugin-blackdown-java-sdk
-Obsoletes:  mozilla-plugin-gcc2-%{name}
-Obsoletes:  mozilla-plugin-gcc3-%{name}
-Obsoletes:  mozilla-plugin-gcc32-%{name}
-Obsoletes:  mozilla-plugin-java-blackdown
-Obsoletes:  mozilla-plugin-%{name}
+Summary:	Java plugin for WWW browsers
+Summary(pl.UTF-8):	Wtyczka Javy do przeglądarek WWW
+Group:		Development/Languages/Java
+Requires:	%{name}-jre-X11 = %{version}-%{release}
+Requires:	browser-plugins >= 2.0
+Requires:	browser-plugins(%{_target_base_arch})
+Provides:	%{name}-mozilla-plugin
+Provides:	mozilla-firefox-plugin-%{name}
+Provides:	mozilla-plugin-%{name}
+Obsoletes:	blackdown-java-sdk-mozilla-plugin
+Obsoletes:	browser-plugin-openjdk-ng
+Obsoletes:	java-blackdown-mozilla-plugin
+Obsoletes:	jre-mozilla-plugin
+Obsoletes:	mozilla-firefox-plugin-gcc2-openjdk
+Obsoletes:	mozilla-firefox-plugin-gcc3-openjdk
+Obsoletes:	mozilla-firefox-plugin-java-blackdown
+Obsoletes:	mozilla-firefox-plugin-openjdk
+Obsoletes:	mozilla-plugin-blackdown-java-sdk
+Obsoletes:	mozilla-plugin-gcc2-openjdk
+Obsoletes:	mozilla-plugin-gcc3-openjdk
+Obsoletes:	mozilla-plugin-gcc32-openjdk
+Obsoletes:	mozilla-plugin-java-blackdown
+Obsoletes:	mozilla-plugin-openjdk
+Obsoletes:	openjdk-moz-plugin
+Obsoletes:	openjdk-mozilla-plugin
 
 %description -n browser-plugin-%{name}
 Java plugin for WWW browsers.
@@ -242,31 +242,31 @@ Java plugin for WWW browsers.
 Wtyczka z obsługą Javy dla przeglądarek WWW.
 
 %package -n browser-plugin-%{name}-ng
-Summary:    Next-Generation Java plugin for WWW browsers
-Summary(pl.UTF-8):  Wtyczka Javy Nowej Generacji do przeglądarek WWW
-Group:      Development/Languages/Java
-Requires:   %{name}-jre-X11 = %{version}-%{release}
-Requires:   browser-plugins >= 2.0
-Requires:   browser-plugins(%{_target_base_arch})
-Provides:   %{name}-mozilla-plugin
-Provides:   mozilla-firefox-plugin-%{name}
-Provides:   mozilla-plugin-%{name}
-Obsoletes:  blackdown-java-sdk-mozilla-plugin
-Obsoletes:  browser-plugin-%{name}
-Obsoletes:  java-blackdown-mozilla-plugin
-Obsoletes:  %{name}-moz-plugin
-Obsoletes:  %{name}-mozilla-plugin
-Obsoletes:  jre-mozilla-plugin
-Obsoletes:  mozilla-firefox-plugin-gcc2-%{name}
-Obsoletes:  mozilla-firefox-plugin-gcc3-%{name}
-Obsoletes:  mozilla-firefox-plugin-java-blackdown
-Obsoletes:  mozilla-firefox-plugin-%{name}
-Obsoletes:  mozilla-plugin-blackdown-java-sdk
-Obsoletes:  mozilla-plugin-gcc2-%{name}
-Obsoletes:  mozilla-plugin-gcc3-%{name}
-Obsoletes:  mozilla-plugin-gcc32-%{name}
-Obsoletes:  mozilla-plugin-java-blackdown
-Obsoletes:  mozilla-plugin-%{name}
+Summary:	Next-Generation Java plugin for WWW browsers
+Summary(pl.UTF-8):	Wtyczka Javy Nowej Generacji do przeglądarek WWW
+Group:		Development/Languages/Java
+Requires:	%{name}-jre-X11 = %{version}-%{release}
+Requires:	browser-plugins >= 2.0
+Requires:	browser-plugins(%{_target_base_arch})
+Provides:	%{name}-mozilla-plugin
+Provides:	mozilla-firefox-plugin-%{name}
+Provides:	mozilla-plugin-%{name}
+Obsoletes:	blackdown-java-sdk-mozilla-plugin
+Obsoletes:	browser-plugin-openjdk
+Obsoletes:	java-blackdown-mozilla-plugin
+Obsoletes:	jre-mozilla-plugin
+Obsoletes:	mozilla-firefox-plugin-gcc2-openjdk
+Obsoletes:	mozilla-firefox-plugin-gcc3-openjdk
+Obsoletes:	mozilla-firefox-plugin-java-blackdown
+Obsoletes:	mozilla-firefox-plugin-openjdk
+Obsoletes:	mozilla-plugin-blackdown-java-sdk
+Obsoletes:	mozilla-plugin-gcc2-openjdk
+Obsoletes:	mozilla-plugin-gcc3-openjdk
+Obsoletes:	mozilla-plugin-gcc32-openjdk
+Obsoletes:	mozilla-plugin-java-blackdown
+Obsoletes:	mozilla-plugin-openjdk
+Obsoletes:	openjdk-moz-plugin
+Obsoletes:	openjdk-mozilla-plugin
 
 %description -n browser-plugin-%{name}-ng
 Next-Generation Java plugin for WWW browsers. Works only with
@@ -277,10 +277,10 @@ Wtyczka Nowej Generacji z obsługą Javy dla przeglądarek WWW. Działa
 tylko z Firefoxem/Iceweaselem 3.x.
 
 %package sources
-Summary:    JDK sources
-Summary(pl.UTF-8):  Źródła JDK
-Group:      Development/Languages/Java
-Requires:   %{name}-jre = %{version}-%{release}
+Summary:	JDK sources
+Summary(pl.UTF-8):	Źródła JDK
+Group:		Development/Languages/Java
+Requires:	%{name}-jre = %{version}-%{release}
 
 %description sources
 Sources for package JDK.
@@ -481,6 +481,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(ja) %{_mandir}/ja/man1/xjc.1*
 
 %files jre
+%defattr(644,root,root,755)
 %dir %{javadir}
 %dir %{javadir}/bin
 %dir %{jredir}
