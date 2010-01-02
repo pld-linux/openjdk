@@ -29,7 +29,6 @@ BuildRequires:	procps
 BuildRequires:	rpmbuild(macros) >= 1.357
 BuildRequires:	unzip
 BuildRequires:	zip
-Provides:	java(ClassDataVersion) = %{_classdataversion}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define         javareldir	%{name}-%{version}
