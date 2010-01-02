@@ -50,7 +50,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define			builddir		build/%{_os}-%{arch}
 
-# make -j1 does not work because there is some stupid magick which takes MFLAGS
+# make -j1 does not work because there is some stupid magic which takes MFLAGS
 # and says -jN is not allowed. remove %{_smp_mflags} from %__make.
 %{expand:%%global	__make		%(echo %{__make} | sed -e 's/%{?_smp_mflags}\b//')}
 
@@ -303,13 +303,13 @@ rm -f $RPM_BUILD_ROOT%{javadir}/{,jre/}{ASSEMBLY_EXCEPTION,LICENSE,THIRD_PARTY_R
 
 cd $RPM_BUILD_ROOT%{javadir}/bin
 for I in *; do
-  ln -s %{javadir}/bin/$I $RPM_BUILD_ROOT%{_bindir}/$I
+	ln -s %{javadir}/bin/$I $RPM_BUILD_ROOT%{_bindir}/$I
 done
 cd -
 
 cd $RPM_BUILD_ROOT%{jredir}/bin
 for I in *; do
-  ln -sf %{javadir}/bin/$I $RPM_BUILD_ROOT%{jredir}/bin/$I
+	ln -sf %{javadir}/bin/$I $RPM_BUILD_ROOT%{jredir}/bin/$I
 done
 cd -
 
@@ -320,16 +320,16 @@ ln -sf %{jredir}/lib/jce.jar $RPM_BUILD_ROOT%{jvmjardir}/jce.jar
 for f in jndi jndi-ldap jndi-cos jndi-rmi jaas jdbc-stdext jdbc-stdext-3.0 \
     sasl jaxp_parser_impl jaxp_transform_impl jaxp jmx activation xml-commons-apis \
     jndi-dns jndi-rmi; do
-    ln -sf %{jredir}/lib/rt.jar $RPM_BUILD_ROOT%{jvmjardir}/$f.jar
+	ln -sf %{jredir}/lib/rt.jar $RPM_BUILD_ROOT%{jvmjardir}/$f.jar
 done
 
 # install -d $RPM_BUILD_ROOT%{jredir}/javaws
 # cp -a jre/javaws/* $RPM_BUILD_ROOT%{jredir}/javaws
 # ln -sf %{jredir}/lib/javaws.jar $RPM_BUILD_ROOT%{jvmjardir}/javaws.jar
 
-rm -rf  $RPM_BUILD_ROOT%{javadir}/man
-install %{builddir}/j2sdk-image/man/man1/* $RPM_BUILD_ROOT%{_mandir}/man1
-install %{builddir}/j2sdk-image/man/ja/man1/* $RPM_BUILD_ROOT%{_mandir}/ja/man1
+rm -rf $RPM_BUILD_ROOT%{javadir}/man
+cp -a %{builddir}/j2sdk-image/man/man1/* $RPM_BUILD_ROOT%{_mandir}/man1
+cp -a %{builddir}/j2sdk-image/man/ja/man1/* $RPM_BUILD_ROOT%{_mandir}/ja/man1
 
 %clean
 rm -rf $RPM_BUILD_ROOT
