@@ -100,7 +100,7 @@ Summary(pl.UTF-8):  Openjdk JRE - środowisko uruchomieniowe Javy dla Linuksa
 Group:      Development/Languages/Java
 Requires:   %{name}-tools = %{version}-%{release}
 Requires:   jpackage-utils >= 0:1.6.6-14
-Requires:   rpm-whiteout >= 1.8
+Requires:   rpm-whiteout >= 1.29
 Provides:   j2re = %{version}
 Provides:   jaas = %{version}
 Provides:   jaf = 1.1.1
@@ -177,7 +177,7 @@ Summary:    Shared Java tools
 Summary(pl.UTF-8):  Współdzielone narzędzia Javy
 Group:      Development/Languages/Java
 Requires:   %{name}-jre = %{version}-%{release}
-Requires:   rpm-whiteout >= 1.8
+Requires:   rpm-whiteout >= 1.29
 Provides:   jar
 Provides:   java-jre-tools
 Provides:   java-shared
