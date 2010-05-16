@@ -27,6 +27,7 @@ BuildRequires:	jdk
 BuildRequires:	jpackage-utils
 BuildRequires:	libstdc++-devel
 BuildRequires:	rpmbuild(macros) >= 1.357
+BuildRequires:	unzip
 Provides:	java(ClassDataVersion) = %{_classdataversion}
 ExclusiveArch:	%{ix86} %{x8664}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
