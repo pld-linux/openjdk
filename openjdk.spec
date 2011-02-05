@@ -38,7 +38,7 @@ Today this project contains two significant components of the JDK:
 - The Java programming-language compiler (javac), with complete
   NetBeans project metadata
 
-%description -l pl.UTF-8:
+%description -l pl.UTF-8
 Aktualnie ten projekt zawiera dwa znaczące składniki JDK:
 - maszynę wirtualną HotSpot
 - kompilator Javy (javac) z pełnymi metadanymi projektu NetBeans
